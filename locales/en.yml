@@ -1,0 +1,18 @@
+en:
+  vagrant_appcatalyst:
+    vm:
+      cloning: |-
+        Cloning VM, this might take a while...
+    errors:
+      appcatalyst_old_version: |-
+        This version of AppCatalyst is not supported.
+      violations:
+        poweron_not_allowed: |-
+          Power on was canceled, make sure the VM you're trying to power on does not violate AppCatalyst constraints.
+        operation_not_supported: |-
+          Operation not supported by AppCatalyst.
+      rest_errors:
+        unattended_code_error: |-
+          Unattended code received %{message}
+        endpoint_unavailable: |-
+          Can't connect to AppCatalyst, please verify connectivity.
