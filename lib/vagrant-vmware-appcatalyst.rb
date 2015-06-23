@@ -1,3 +1,16 @@
+# encoding: utf-8
+# Copyright (c) 2015 VMware, Inc.  All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not
+# use this file except in compliance with the License.  You may obtain a copy of
+# the License at http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, without
+# warranties or conditions of any kind, EITHER EXPRESS OR IMPLIED.  See the
+# License for the specific language governing permissions and limitations under
+# the License.
+
 require 'pathname'
 require 'vagrant-vmware-appcatalyst/plugin'
 
@@ -12,52 +25,6 @@ module VagrantPlugins
     # @return [Pathname]
     def self.source_root
       @source_root ||= Pathname.new(File.expand_path('../../', __FILE__))
-    end
-  end
-end
-
-module Vagrant
-  class Machine
-    attr_reader :vappid
-
-    def vappid=(value)
-      @logger.info("New vApp ID: #{value.inspect}")
-
-      # The file that will store the id if we have one. This allows the
-      # ID to persist across Vagrant runs.
-
-      id_file = @data_dir.join('../../../appcatalyst_vappid')
-
-      ### this should be ./.vagrant/appcatalyst_vappid
-
-      if value
-        # Write the "id" file with the id given.
-        id_file.open('w+') do |f|
-          f.write(value)
-        end
-      else
-        # Delete the file, since the machine is now destroyed
-        id_file.delete if id_file.file?
-      end
-
-      # Store the ID locally
-      @vappid = value
-
-      # Notify the provider that the ID changed in case it needs to do
-      # any accounting from it.
-      # @provider.machine_id_changed
-    end
-
-    # This returns the AppCatalyst vApp ID.
-    #
-    # @return [vAppId]
-    def get_vapp_id
-      vappid_file = @data_dir.join('../../../appcatalyst_vappid')
-      if vappid_file.file?
-        @vappid = vappid_file.read.chomp
-      else
-        nil
-      end
     end
   end
 end

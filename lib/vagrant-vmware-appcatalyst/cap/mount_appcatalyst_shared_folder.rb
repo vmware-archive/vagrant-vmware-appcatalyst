@@ -1,3 +1,15 @@
+# encoding: utf-8
+# Copyright (c) 2015 VMware, Inc.  All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not
+# use this file except in compliance with the License.  You may obtain a copy of
+# the License at http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed
+# under the License is distributed on an "AS IS" BASIS, without warranties or
+# conditions of any kind, EITHER EXPRESS OR IMPLIED.  See the License for the
+# specific language governing permissions and limitations under the License.
+
 module VagrantPlugins
   module AppCatalyst
     module Cap
@@ -38,7 +50,7 @@ module VagrantPlugins
           # Attempt to mount the folder. We retry here a few times because
           # it can fail early on.
           attempts = 0
-          while true
+          loop do
             success = true
 
             stderr = ""
@@ -67,17 +79,6 @@ module VagrantPlugins
 
             sleep(2*attempts)
           end
-
-          # # Chown the directory to the proper user. We skip this if the
-          # # mount options contained a readonly flag, because it won't work.
-          # if !options[:mount_options] || !options[:mount_options].include?("ro")
-          #   chown_commands = []
-          #   chown_commands << "chown #{mount_uid}:#{mount_gid} #{expanded_guest_path}"
-          #   chown_commands << "chown #{mount_uid}:#{mount_gid_old} #{expanded_guest_path}"
-          #
-          #   exit_status = machine.communicate.sudo(chown_commands[0], error_check: false)
-          #   machine.communicate.sudo(chown_commands[1]) if exit_status != 0
-          # end
 
           # Emit an upstart event if we can
           if machine.communicate.test("test -x /sbin/initctl")

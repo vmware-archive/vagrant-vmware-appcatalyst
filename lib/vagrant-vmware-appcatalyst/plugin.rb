@@ -1,4 +1,16 @@
-# encoding: UTF-8
+# encoding: utf-8
+# Copyright (c) 2015 VMware, Inc.  All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not
+# use this file except in compliance with the License.  You may obtain a copy of
+# the License at http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, without
+# warranties or conditions of any kind, EITHER EXPRESS OR IMPLIED.  See the
+# License for the specific language governing permissions and limitations under
+# the License.
+
 begin
   require 'vagrant'
 rescue LoadError
@@ -41,22 +53,20 @@ module VagrantPlugins
       end
 
       synced_folder(:vmware_appcatalyst) do
-        require File.expand_path("../synced_folder", __FILE__)
+        require File.expand_path('../synced_folder', __FILE__)
         SyncedFolder
       end
 
-
       # Add vmware shared folders mount capability to linux
-      guest_capability("linux", "mount_appcatalyst_shared_folder") do
-        require_relative "cap/mount_appcatalyst_shared_folder"
+      guest_capability('linux', 'mount_appcatalyst_shared_folder') do
+        require_relative 'cap/mount_appcatalyst_shared_folder'
         Cap::MountAppCatalystSharedFolder
       end
 
-      guest_capability("linux", "unmount_appcatalyst_shared_folder") do
-        require_relative "cap/mount_appcatalyst_shared_folder"
+      guest_capability('linux', 'unmount_appcatalyst_shared_folder') do
+        require_relative 'cap/mount_appcatalyst_shared_folder'
         Cap::MountAppCatalystSharedFolder
       end
-
 
       def self.setup_i18n
         I18n.load_path << File.expand_path('locales/en.yml', AppCatalyst.source_root)
