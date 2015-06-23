@@ -1,4 +1,4 @@
-[Vagrant](http://www.vagrantup.com) provider for [VMware AppCatalyst®](https://communities.vmware.com/community/vmtn/devops/vmware-appcatalyst) [![Gem Version](https://badge.fury.io/rb/vagrant-vmware-appcatalyst.svg)](http://badge.fury.io/rb/vagrant-vmware-appcatalyst)
+[Vagrant](http://www.vagrantup.com) provider for [VMware AppCatalyst®](https://communities.vmware.com/community/vmtn/devops/vmware-appcatalyst) [![Gem Version](https://badge.fury.io/rb/vagrant-vmware-appcatalyst.svg)](http://badge.fury.io/rb/vagrant-vmware-appcatalyst) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vmware/vagrant-vmware-appcatalyst?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 =============
 
 This plugin supports `vmware_desktop`, `vmware_fusion` and `vmware_workstation` box type, the same used by Hashicorp plugins for VMware products.
