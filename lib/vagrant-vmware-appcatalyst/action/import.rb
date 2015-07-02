@@ -40,6 +40,18 @@ module VagrantPlugins
             "#{env[:machine].data_dir}/#{uuid}/*.vmx"
           ).first
 
+          env[:appcatalyst_cnx].set_vmx_value(
+            vmx_file,
+            'memsize',
+            env[:machine].provider_config.memory
+          ) unless env[:machine].provider_config.memory.empty?
+
+          env[:appcatalyst_cnx].set_vmx_value(
+            vmx_file,
+            'numvcpus',
+            env[:machine].provider_config.cpus
+          ) unless env[:machine].provider_config.cpus.empty?
+
           # Make sure we use Virtual HW 11
           env[:appcatalyst_cnx].set_vmx_value(vmx_file, 'virtualHW.version', '11')
 
