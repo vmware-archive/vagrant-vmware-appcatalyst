@@ -41,8 +41,8 @@ Vagrant.configure('2') do |config|
 
   # Configure our boxes with 1 CPU and 384MB of RAM
   config.vm.provider 'vmware_appcatalyst' do |v|
-    v.vmx['numvcpus'] = '1'
-    v.vmx['memsize'] = '384'
+    v.cpus = '1'
+    v.memory = '384'
   end
 
   # Go through nodes and configure each of them.j

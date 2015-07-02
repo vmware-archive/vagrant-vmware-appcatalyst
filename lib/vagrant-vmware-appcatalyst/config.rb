@@ -23,6 +23,16 @@ module VagrantPlugins
       # @return [Hash]
       attr_accessor :vmx
 
+      # Shortcut to set memory in the VM
+      #
+      # @return [String]
+      attr_accessor :memory
+
+      # Shortcut to set cpus in the VM
+      #
+      # @return [String]
+      attr_accessor :cpus
+
       # REST API daemon port, default 8080
       #
       # @return [String]
