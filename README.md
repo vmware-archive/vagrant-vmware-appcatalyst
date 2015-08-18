@@ -14,6 +14,9 @@ Vagrant will download all the required gems during the installation process.
 
 After the install has completed a ```vagrant up --provider=vmware_appcatalyst``` will trigger the newly installed provider.
 
+*Note: The AppCatalyst Daemon must be running before bringing up a new vagrant box:*
+```appcatalyst-daemon start```
+
 Upgrade
 -------------
 
