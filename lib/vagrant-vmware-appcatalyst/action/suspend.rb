@@ -21,7 +21,10 @@ module VagrantPlugins
         end
 
         def call(env)
-          env[:appcatalyst_cnx].set_vm_power(env[:machine].id, 'suspend')
+          if env[:machine].state.id == :running
+            env[:ui].info I18n.t('vagrant.actions.vm.suspend.suspending')
+            env[:appcatalyst_cnx].set_vm_power(env[:machine].id, 'suspend')
+          end
 
           @app.call(env)
         end

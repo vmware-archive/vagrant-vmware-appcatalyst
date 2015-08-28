@@ -79,13 +79,17 @@ module VagrantPlugins
 
       def self.action_suspend
         Vagrant::Action::Builder.new.tap do |b|
-          b.use MessageNotSupported
+          b.use ConfigValidate
+          b.use ConnectAppCatalyst
+          b.use Suspend
         end
       end
 
       def self.action_resume
         Vagrant::Action::Builder.new.tap do |b|
-          b.use MessageNotSupported
+          b.use ConfigValidate
+          b.use ConnectAppCatalyst
+          b.use Resume
         end
       end
 
@@ -226,6 +230,10 @@ module VagrantPlugins
                action_root.join('is_created')
       autoload :IsRunning,
                action_root.join('is_running')
+      autoload :Suspend,
+               action_root.join('suspend')
+      autoload :Resume,
+               action_root.join('resume')
       autoload :MessageAlreadyRunning,
                action_root.join('message_already_running')
       autoload :MessageNotRunning,

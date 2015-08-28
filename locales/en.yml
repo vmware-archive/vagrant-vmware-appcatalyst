@@ -11,6 +11,43 @@
 # the License.
 en:
   vagrant_appcatalyst:
+    commands:
+      status:
+        stopped: |-
+          The VM is powered off. To restart the VM, simply run `vagrant up`
+        stopping: |-
+          The VM is stopping.
+        not_created: |-
+          The environment has not yet been created. Run `vagrant up` to
+          create the environment. If a machine is not created, only the
+          default provider will be shown. So if a provider is not listed,
+          then the machine is not created for that environment.
+        running: |-
+          The VM is running. To stop this VM, you can run `vagrant halt` to
+          shut it down forcefully, or you can run `vagrant suspend` to simply
+          suspend the virtual machine. In either case, to restart it again,
+          simply run `vagrant up`.
+        suspending: |-
+          The VM is currently saving its state. In a few moments this state
+          should transition to "suspended." Please run `vagrant status` again
+          in a few seconds.
+        suspended: |-
+          To resume this VM, simply run `vagrant resume` or `vagrant up`.
+        output: |-
+          Current machine states:
+
+          %{states}
+
+          %{message}
+        blocked: |-
+          The VM is "blocked" This is a very rare state which means that
+          AppCatalyst is unable to start the VM as the VMX requires manual
+          intervention. The only known solution to this problem is to destroy
+          your machine, sorry.
+        listing: |-
+          This environment represents multiple VMs. The VMs are all listed
+          above with their current state. For more information about a specific
+          VM, run `vagrant status NAME`.
     vm:
       cloning: |-
         Cloning VM, this might take a while...
