@@ -34,7 +34,14 @@ module VagrantPlugins
             mount_gid_old = "`id -g #{options[:group]}`"
           end
 
-          # First mount command uses getent to get the group
+          # First mount command uses vmhgfs FUSE which is the preferred mount
+          # style.
+          mount_options = "-o allow_other,uid=#{mount_uid},gid=#{mount_gid}"
+          mount_options += ",#{options[:mount_options].join(",")}" if options[:mount_options]
+          mount_commands << "/usr/bin/vmhgfs-fuse #{mount_options} .host:/#{name} #{expanded_guest_path}"
+
+          # second mount command fallsback to the kernel vmhgfs module and uses
+          # getent to get the group.
           mount_options = "-o uid=#{mount_uid},gid=#{mount_gid}"
           mount_options += ",#{options[:mount_options].join(",")}" if options[:mount_options]
           mount_commands << "mount -t vmhgfs #{mount_options} .host:/#{name} #{expanded_guest_path}"
@@ -46,6 +53,9 @@ module VagrantPlugins
 
           # Create the guest path if it doesn't exist
           machine.communicate.sudo("mkdir -p #{expanded_guest_path}")
+
+          # Get rid of the default /mnt/hgfs mount point
+          machine.communicate.sudo('umount /mnt/hgfs')
 
           # Attempt to mount the folder. We retry here a few times because
           # it can fail early on.
