@@ -21,8 +21,15 @@ module VagrantPlugins
         end
 
         def call(env)
-          env[:appcatalyst_cnx].set_vm_power(env[:machine].id, 'resume')
+          current_state = env[:machine].state.id
 
+          if current_state == :paused
+            env[:ui].info I18n.t('vagrant.actions.vm.resume.unpausing')
+            env[:appcatalyst_cnx].set_vm_power(env[:machine].id, 'unpause')
+          elsif current_state == :suspended
+            env[:ui].info I18n.t('vagrant.actions.vm.resume.resuming')
+            env[:appcatalyst_cnx].set_vm_power(env[:machine].id, 'on')
+          end
           @app.call(env)
         end
       end

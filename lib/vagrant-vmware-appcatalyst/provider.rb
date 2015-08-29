@@ -40,7 +40,7 @@ module VagrantPlugins
 
         # Translate into short/long descriptions
         short = state_id.to_s.gsub("_", " ")
-        long  = I18n.t("vagrant.commands.status.#{state_id}")
+        long  = I18n.t("vagrant_appcatalyst.commands.status.#{state_id}")
 
         # If we're not created, then specify the special ID flag
         if state_id == :not_created

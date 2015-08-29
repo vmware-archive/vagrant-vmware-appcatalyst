@@ -33,6 +33,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-expectations', '~> 2.14'
   s.add_development_dependency 'rspec-mocks', '~> 2.14'
 
+  s.add_development_dependency 'bundler', '~> 1.3'
+  s.add_development_dependency 'rake'
+
   s.files = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files = s.files.grep(%r{^(test|spec|features)/})

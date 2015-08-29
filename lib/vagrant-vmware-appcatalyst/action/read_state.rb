@@ -44,8 +44,8 @@ module VagrantPlugins
             @logger.info("VM [#{vm_name}] is running")
             return :running
           when 'powering off'
-            @logger.info("VM [#{vm_name}] is stopped")
-            return :stopped
+            @logger.info("VM [#{vm_name}] is stopping")
+            return :stopping
           when 'powered off'
             @logger.info("VM [#{vm_name}] is stopped")
             return :stopped
@@ -54,13 +54,13 @@ module VagrantPlugins
             return :suspended
           when 'suspending'
             @logger.info("VM [#{vm_name}] is suspended")
-            return :suspended
+            return :suspending
           when 'tools_running'
             @logger.info("VM [#{vm_name}] is running")
             return :running
           when 'blocked on msg'
             @logger.info("VM [#{vm_name}] is stopped")
-            return :stopped
+            return :blocked
           else
             @logger.info("VM [#{vm_name}] is in an unknown state")
             return :unknown
