@@ -55,7 +55,7 @@ module VagrantPlugins
           machine.communicate.sudo("mkdir -p #{expanded_guest_path}")
 
           # Get rid of the default /mnt/hgfs mount point
-          machine.communicate.sudo('umount /mnt/hgfs')
+          machine.communicate.sudo('mountpoint -q /mnt/hgfs && umount /mnt/hgfs || true')
 
           # Attempt to mount the folder. We retry here a few times because
           # it can fail early on.
