@@ -63,4 +63,7 @@ en:
         unattended_code_error: |-
           Unattended code received %{message}
         endpoint_unavailable: |-
-          Can't connect to AppCatalyst, please verify connectivity.
+          Can't connect to AppCatalyst, please verify that the daemon has
+          been started. If you are unsure, please run the following:
+
+            $ nohup /opt/vmware/appcatalyst/bin/appcatalyst-daemon 2>&1 >/dev/null &
