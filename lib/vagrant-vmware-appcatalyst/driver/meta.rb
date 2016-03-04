@@ -89,7 +89,7 @@ module VagrantPlugins
             response = clnt.request('GET', url, nil, nil, nil)
             unless response.ok?
               fail Errors::UnattendedCodeError,
-                   :message => response.status + ' ' + response.reason
+                   :message => "#{response.status} #{response.reason}"
             end
 
             api_definition = JSON.parse(response.body)
